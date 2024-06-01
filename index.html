@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Menu Generator</title>
+    </head>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="GenerateMenu.js"></script>
+    <style>
+        .Hover{
+            border: 2px white solid;
+        }
+
+        .Active{
+            border: 2px red solid;
+        }
+        .AddToCount{
+            color: cyan;
+        }
+    </style>
+    <body onload='Init()' style="background-color: gray; overflow: hidden;">
+        <span id='ModeInfo' style='position: absolute; z-index: 9999; color:aquamarine; text-align: center; left: 50%; transform: translate(-50%); font-size: large;'>Press ` (~)</span>
+        <div id='form-container' style="background-image: url('backgroundDefault.png'); text-align-last: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+            <form id="Element" action="javascript:void(0);" style="font-size: large; color: lime">
+                <input type='file' name='ini' accept='.ini' style='width: 34.75%; overflow: hidden;' onchange='LoadIni()'/></br>
+                <textarea placeholder="Choose Ini File" spellcheck='false' style='text-align-last: left; background-color: black; color: lime; background-color: RGBA(0, 0, 0, 0.35);'></textarea></br>
+                <label for='width'>Width</label></br>
+                <input type='number' name='width' min='1' oninput='ClampWidth()'/></br>
+
+                <label for='height'>Height</label></br>
+                <input type='number' name='height' min='1' oninput='ClampHeight()'/></br>
+
+                <label for='offset_x'>Offset X</label></br>
+                <input type='number' name='offset_x' value='0'/></br>
+
+                <label for='offset_y'>Offset Y</label></br>
+                <input type='number' name='offset_y' value='0'/></br>
+
+                </br>
+                <label for='image' required='required'>Image</label></br>
+                <input type='file' name='image' accept='image/*' title=" " style='width: 34.75%; overflow: hidden;'/>
+                </br>
+                <label for='background_image'>Background Image</label></br>
+                <input type='file' name='background_image' accept='image/*' style='width: 34.75%; overflow: hidden;'/>
+                </br>
+                </br>
+                <select>
+                    <option value='Visual'>Visual</option>
+                    <option value='Slider'>Slider</option>
+                    <option value='Toggle'>Toggle</option>
+                </select>
+                </br>
+                </br>
+                <input type='submit' value='Add Element' onclick='Main()'/>
+                </br>
+                <input type='file' name='Background' accept='image/png, image/jpeg' style='display: none; width: 34.75%; overflow: hidden;' oninput="ChangeBackground()"/>
+                </br>
+                <input type='text' name='CanvasText' placeholder='Generate Text' oninput='RenderText()'/>
+                </br>
+                <canvas width="128px" height="32px">
+                </canvas>
+                </br>
+                <button type='button' onclick='SaveTextAsImage()'>Save Text as Image</button>
+            </form>
+        </div>
+    </body>
+</html>
